@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Exibe Medicamentos{% endblock %}
+
+
+{% block content%}
+<h2>Medicamento: </h2>
+
+<div class="offset-1 col-10 list-div">
+    <h1>Adicionar Integrante</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Criar Integrante">
+    </form>
+    
+</div>
+
+{% endblock %}

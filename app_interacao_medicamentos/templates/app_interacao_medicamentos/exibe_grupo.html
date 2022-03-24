@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Integrantes Grupo{% endblock %}
+
+
+{% block content%}
+<h2> Integrantes Grupo </h2>
+
+
+<table class="table">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">Nome:</th>
+        <th scope="col">RA:</th>
+      </tr>
+    </thead>
+{% for integrante in integrantes_grupo %}
+<tbody>
+    <tr class="table-secondary">
+        <th scope="row" > {{ integrante.nome_integrante }}  </th>
+        <td> {{ integrante.ra_integrante }}</td>
+    </tr>
+{% endfor %}
+
+
+{% endblock %}

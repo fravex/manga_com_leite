@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Lista Medicamentos{% endblock %}
+
+
+{% block content%}
+<h2>Resultado: </h2>
+
+
+{%for itens in d%}
+   {{ itens.id_drugbank }}
+{% endfor %}
+
+
+{% if drug_contains %}
+  {% for item in dados3 %}
+  <div class="alert alert-danger" role="alert">
+    
+      Existe Interação entre: {{ item.nome }} e
+    {% endfor %} 
+    {% for item in dados4 %}
+      {{ item.nome }} 
+    {% endfor %} 
+  </div>
+{% endif%} 
+
+{% if no_interation %}
+  <div class="alert alert-success" role="alert">
+    {{ no_interation }}   
+    {% for item in dados3 %}
+    <tbody>
+        <tr class="table-secondary">
+        <td><a href="exibe_medicamento/{{ item.id_principal  }}">{{ item.nome  }} </a></td>
+    </tr>
+    {% endfor %}e
+    {% for item in dados4 %}
+    <tbody>
+        <tr class="table-secondary">
+        <td><a href="exibe_medicamento/{{ item.id_principal  }}">{{ item.nome  }}</a></td>
+    </tr>
+{% endfor %}
+  </div>
+{% endif%}
+
+<table class="table">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">IDs</th>
+      <th scope="col">Nome Anvisa</th>
+    </tr>
+  </thead>
+  {% for item in dados3 %}
+  <tbody>
+      <tr class="table-secondary">
+          <th scope="row" ><a href="exibe_medicamento/{{ item.id_principal  }}">{{ item.id_principal  }}</a></th>
+          <td><a href="https://consultas.anvisa.gov.br/#/medicamentos/q/?nomeProduto={{ item.nome  }}">{{ item.nome  }}</a></td>
+      </tr>
+  {% endfor %}
+
+  {% for item in dados4 %}
+  <tbody>
+      <tr class="table-secondary">
+          <th scope="row" ><a href="exibe_medicamento/{{ item.id_principal  }}">{{ item.id_principal  }}</a></th>
+          <td><a href="exibe_medicamento/{{ item.id_principal  }}">{{ item.nome  }}</a></td>
+      </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
